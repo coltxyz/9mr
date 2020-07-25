@@ -37,7 +37,14 @@ input, button, textarea {
 ul, li {
   margin: 0;
 }
-
+li.blank {
+  list-style: none;
+  height: 1em;
+}
+li.align-bottom {
+  position: absolute;
+  bottom: 3rem;
+}
 #main {
   height: 100vh;
   width: 100vw;
@@ -63,6 +70,14 @@ ul, li {
 .content-main {
   -webkit-overflow-scrolling: touch;
   pointer-events: all;
+  width: calc(75vw + 50px);
+  height: 100%;
+  padding-bottom: 40px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding-left: 25vw;
+  position: relative;
+  box-sizing: content-box;
 }
 .content-inner {
   position: relative;
@@ -84,16 +99,16 @@ ul, li {
 }
 
 .module {
-  width: 100vw;
+  width: 75vw;
   height: 100%;
   padding: 3rem 0;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .row {
   display: flex;
-  // margin-bottom: 6rem;
   position: relative;
   padding: 0 3rem;
   .col {
@@ -116,13 +131,6 @@ ul, li {
   bottom: 0;
   left: 0;
   right: 0;
-  > div {
-    width: calc(100% + 50px);
-    height: calc(100% + 40px);
-    padding-bottom: 40px;
-    overflow: auto;
-    overscroll-behavior: contain;
-  }
 }
 
 .margin-copy {

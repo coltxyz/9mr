@@ -2,18 +2,11 @@ import Router from 'next/router';
 import { get } from 'dotty';
 import { debounce } from 'throttle-debounce'
 
+import Nav from '../components/nav.js';
 import "../styles/styles.scss";
-import { projectsQuery, teamQuery, aboutQuery, featuredContent } from '../lib/queries';
-import Contact from '../components/contact';
-import FirmProfile from '../components/firm-profile';
-import HomeHero from '../components/home-hero';
+// import { contentQuery } from '../lib/queries';
 import Layout from '../components/layout';
-import ProjectDetail from '../components/project-detail';
 // import sanity from '../lib/sanity'
-import Stack from '../components/stack';
-import Services from '../components/services';
-import SelectClients from '../components/select-clients';
-import Team from '../components/team';
 import {
   TRANSITION_ENTERING,
   TRANSITION_EXITING,
@@ -134,23 +127,13 @@ export default class Home extends React.Component {
         const bestDistance = getScrollDistance(acc);
         return distance < bestDistance ? child : acc;
       })
-      const isFocus = getScrollDistance(closestChild) < this.windowHeight * DISTANCE_THRESHOLD_RATIO;
 
-      let activeFrameType = null;
-      if (this.state.isProjectDetail) {
-        activeFrameType = 'projectDetail'
-      } else if (isFocus) {
-        activeFrameType = closestChild.dataset.frametype;
-      }
-
-      const scrollBarPosition = Math.floor(this.scrollContainer.scrollTop) * (this.windowHeight - (TRACKBAR_HEIGHT + 10)) / (this.scrollableHeight - this.windowHeight)
+      const activeFrameType = closestChild.dataset.frametype;
 
       this.setState({
         activeFrameType,
         activeFrameId: parseInt(closestChild.dataset.frameid),
-        activeDataSrcId: closestChild.dataset.sourceid,
-        isFocus,
-        scrollBarPosition
+        activeDataSrcId: closestChild.dataset.sourceid
       });
 
     } catch (e) {
@@ -158,72 +141,6 @@ export default class Home extends React.Component {
     }
   }
 
-  onStackClick = ({ dataSourceId, topMostImageId }) => {
-    this.topmostImageForStack[ dataSourceId ] = topMostImageId
-  }
-
-  onDetailClick = () => {
-    const project = this.getActivePortfolioItem();
-    this.transitionIn(() => {
-      this.showProjectDetail({ project })
-    })
-  }
-
-  showProjectDetail = ({ project }) => {
-    const activeSlug = get(project, 'slug.current');
-    window.history.replaceState({}, null, `/${ activeSlug }` );
-    this.setState({
-      isProjectDetail: true,
-      activeSlug
-    })
-  }
-
-  hideProjectDetail = () => {
-    window.history.replaceState({}, null, '/')
-    this.setState({
-      isProjectDetail: false,
-      activeSlug: null
-    })
-  }
-
-  onCloseClick = () => {
-    this.transitionOut(() => {
-      this.onScrollNavRequest({ direction: 'center', scroll: true })
-      this.hideProjectDetail()
-    })
-  }
-
-  onToggleTheme = () => {
-    this.setState({
-      theme: this.state.theme === THEME_DARK ? THEME_LIGHT : THEME_DARK
-    })
-  }
-
-  handleScrollbarDrag = (e, data) => {
-    const { y } = data;
-    const scrollPosition = Math.floor(y) / (this.windowHeight - (TRACKBAR_HEIGHT + 10)) * (this.scrollableHeight - this.windowHeight)
-    this.scrollContainer.scrollTo(0, scrollPosition );
-  }
-
-  onProjectChange = ({ direction, slug }) => {
-    let newProject, newIndex;
-    const projects = this.props.projects;
-    const index = projects.findIndex(p => get(p, 'slug.current') === this.state.activeSlug);
-
-    if (direction === 'left') {
-      newIndex = index <= 0 ? projects.length - 1 : index - 1;
-      newProject = projects[newIndex];
-    } else if (direction === 'right') {
-      newIndex = index >= projects.length - 1 ? 0 : index + 1;
-      newProject = projects[newIndex];
-    } else if (slug) {
-      newProject = projects.find( p => get(p, 'slug.current') === slug)
-    }
-
-    this.transitionIn(() => {
-      this.showProjectDetail({ project: newProject })
-    })
-  }
 
   onScrollNavRequest = ({ direction, id, scroll }) => {
     let el;
@@ -256,23 +173,6 @@ export default class Home extends React.Component {
 
   }
 
-  getActivePortfolioItem = () => {
-    const portfolioItems = this.props.projects;
-    const currentViewedItem = portfolioItems
-      .find(item => item._id === this.state.activeDataSrcId);
-    const activeSlugItem = portfolioItems
-      .find(item => get(item, 'slug.current') === this.state.activeSlug);
-    return activeSlugItem || currentViewedItem;
-  }
-
-  getFeaturedProjects = () => {
-    const { featured, projects } = this.props
-    return featured
-      .find(l => l._type === PORTFOLIO_ITEM_LIST_TYPE)
-      .items
-      .map(l => projects.find( m => m._id === l._ref));
-  }
-
   render() {
     return (
       <Layout
@@ -282,17 +182,13 @@ export default class Home extends React.Component {
         activeFrameType={ this.state.activeFrameType }
       >
         <div className="scroll-hider">
+          <Nav activeFrameType={ this.state.activeFrameType } />
           <div
             className="content-main"
             id="scrollContainer"
           >
-            <div className="module">
+            <div className="module" data-frametype="home">
               <div className="row">
-                <div className="col col-1">
-                  9<br/>
-                  Million<br/>
-                  Reasons<br/>
-                </div>
                 <div className="col col-2">
                   We’re NYC’s largest, donation-based community food pantry. We provide free food for anyone in need.
                 </div>
@@ -300,8 +196,6 @@ export default class Home extends React.Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col col-1">
-                </div>
                 <div className="col col-2">
                   Do you want to help us?
                 </div>
@@ -314,8 +208,6 @@ export default class Home extends React.Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col col-1">
-                </div>
                 <div className="col col-2">
                   Do you need groceries?
                 </div>
@@ -326,8 +218,6 @@ export default class Home extends React.Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col col-1">
-                </div>
                 <div className="col col-2">
                   Who are we?
                 </div>
@@ -338,11 +228,47 @@ export default class Home extends React.Component {
                 </div>
               </div>
             </div>
-
             <div
-              className="module module-lg"
+              className="module"
+              data-frametype="body"
             >
-              HELLO.
+              <div className="row">
+                <div className="col col-1">
+                  You can make tax deductible donations through our GoFundMe or through
+                  our PayPal. If you choose PayPal, we get a greater percentage of the money, and encourage you to make a monthly contribution if you can
+                  <br/>
+                  <br/>
+                  <br/>
+                  &nbsp;&nbsp; Here is where your funds are going:
+                  <br/>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col col-2">
+                  <ul>
+                    <li>Expand fridge space</li>
+                    <li>Two box trucks</li>
+                    <li>PPE for volunteers</li>
+                    <li>Diapers and hygiene</li>
+                    <li>Rice, beans, and fruit</li>
+                    <li>Plastic Bags</li>
+                    <li>Uline</li>
+                    <li>Delivery expenses</li>
+                    <li>Port-o-potty</li>
+                  </ul>
+                </div>
+                <div className="col col-1">
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                  <div>$1000</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
