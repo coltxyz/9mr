@@ -12,9 +12,9 @@ import {
 } from '../lib/util';
 
 const social_img_url = '/favicon-xxxl.png';
-const title = 'Volley Studio';
+const title = '9 Million Reasons';
 const ga_id = ''
-const url = 'https://volleystudio.us'
+const url = ''
 
 export default class Layout extends React.Component {
 

@@ -4,8 +4,15 @@ nav {
   padding-top: 3rem;
   padding-left: 3rem;
   height: 100%;
-
+  z-index: 1;
+  pointer-events: none;
 }
 
 nav ul {
+  li {
+    pointer-events: all;
+    &.active, &.active a {
+      color: gray
+    }
+  }
 }

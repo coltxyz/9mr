@@ -1,8 +1,17 @@
 import classnames from 'classnames';
 
+
+const Link = props => (
+  <li className={ classnames(props.className, { active: props.activeFrameId === props.frameId})}>
+    <a href={`#${ props.frameId }`} data-frameid={props.frameId} onClick={ props.onLinkClick }>
+      { props.children }
+    </a>
+  </li>
+)
+
 class Nav extends React.Component {
   render() {
-    switch (this.props.activeFrameType) {
+    switch (this.props.activeFrameId) {
       case 'home':
         return (
             <nav>
@@ -12,32 +21,38 @@ class Nav extends React.Component {
             </nav>
         )
         break;
-      case 'body':
+      default:
         return (
           <nav>
             9MR
             <br/>
             <br/>
             <ul>
-              <li>Volunteer</li>
-              <li>Donate</li>
-              <li>Share</li>
+              <Link frameId="volunteer" {...this.props }>
+                Volunteer
+              </Link>
+              <Link frameId="donate" {...this.props }>
+                Donate
+              </Link>
+              <Link frameId="share" {...this.props }>
+                Share
+              </Link>
               <li className="blank"/>
-              <li>Get Food</li>
+              <Link frameId="need" {...this.props }>
+                Get Food
+              </Link>
               <li className="blank"/>
-              <li>About</li>
-              <li>Gallery</li>
+              <Link frameId="about" {...this.props }>
+                About
+              </Link>
               <li className="blank"/>
-              <li className="align-bottom">Contact</li>
+              <Link frameId="contact" {...this.props } className="align-bottom">
+                Contact
+              </Link>
             </ul>
           </nav>
         )
         break;
-      default:
-        return (
-          <div />
-        )
-
     }
   }
 }
