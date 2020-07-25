@@ -2,6 +2,7 @@ import Router from 'next/router';
 import { get } from 'dotty';
 import { debounce } from 'throttle-debounce'
 
+import Background from '../components/background.js';
 import Nav from '../components/nav.js';
 import "../styles/styles.scss";
 // import { contentQuery } from '../lib/queries';
@@ -33,7 +34,7 @@ export default class Home extends React.Component {
   constructor({ activeSlug }) {
     super();
     this.state = {
-      activeFrameId: 0,
+      activeFrameId: 'home',
       transitionState: TRANSITION_ENTERING,
       theme: THEME_LIGHT
     }
@@ -142,6 +143,7 @@ export default class Home extends React.Component {
 
   onLinkClick = e => {
     const destinationFrameId = e.target.dataset.frameid;
+    console.log(e.target.dataset)
     if (!destinationFrameId) {
       return;
     }
@@ -178,8 +180,11 @@ export default class Home extends React.Component {
         { ...this.props }
         isTransitioning={ this.state.isTransitioning }
         transitionState={ this.state.transitionState }
-        activeFrameType={ this.state.activeFrameType }
+        activeFrameId={ this.state.activeFrameId }
       >
+        <Background
+          activeFrameIde={ this.state.activeFrameId }
+        />
         <div className="scroll-hider">
           <Nav
             activeFrameId={ this.state.activeFrameId }
@@ -189,7 +194,6 @@ export default class Home extends React.Component {
             className="content-main"
             id="scrollContainer"
           >
-
             <div className="module space-between" data-frameid="home" id="module--home">
               <div className="row">
                 <div className="col col-2">

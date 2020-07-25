@@ -1,0 +1,32 @@
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  opacity: 0;
+  transition: opacity 600ms;
+  &--img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 1;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1200ms;
+  }
+}
+
+#main.content--whitetext {
+  color: white;
+  .background {
+    opacity: 1;
+  }
+}
+
+.content--transition--entering, .content--transition--exiting {
+  .background, .background--img {
+    transition: none;
+  }
+}

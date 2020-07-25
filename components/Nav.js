@@ -24,7 +24,9 @@ class Nav extends React.Component {
       default:
         return (
           <nav>
-            9MR
+            <a href="#lol" data-frameid="home" onClick={ this.props.onLinkClick }>
+              9MR
+            </a>
             <br/>
             <br/>
             <ul>

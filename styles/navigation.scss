@@ -8,11 +8,11 @@ nav {
   pointer-events: none;
 }
 
-nav ul {
-  li {
+nav {
+  a {
     pointer-events: all;
-    &.active, &.active a {
-      color: gray
-    }
+  }
+  li.active, li.active a {
+    color: gray
   }
 }
