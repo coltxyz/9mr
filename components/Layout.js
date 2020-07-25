@@ -2,7 +2,7 @@ import classname from 'classnames';
 import Head from 'next/head';
 import { get } from 'dotty';
 import Nav from './nav.js';
-import Controls from './controls';
+
 import {
   TRANSITION_ENTERING,
   TRANSITION_EXITING,

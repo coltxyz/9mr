@@ -1,11 +1,4 @@
 import classnames from 'classnames';
-import Draggable from 'react-draggable';
-import Sun from './svg/sun';
-import Moon from './svg/moon';
-import {
-  THEME_DARK,
-  THEME_LIGHT
-} from '../lib/util';
 
 class Nav extends React.Component {
   render() {
