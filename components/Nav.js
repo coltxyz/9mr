@@ -3,8 +3,8 @@ import classnames from 'classnames'
 
 
 const Link = props => (
-  <li className={ classnames(props.className, { active: props.activeFrameId === props.frameId})}>
-    <a href={`${ props.frameId }`} data-frameid={props.frameId} >
+  <li className={ classnames(props.className, { active: props.activeSlug === props.frameId})}>
+    <a href={`${ props.frameId }`} data-frameid={ props.frameId }>
       { props.children }
     </a>
   </li>
@@ -12,17 +12,13 @@ const Link = props => (
 
 class Nav extends React.Component {
   render() {
-    switch (this.props.activeFrameId) {
-      case 'home':
-        return (
-            <nav>
-              9<br/>
-              Million<br/>
-              Reasons<br/>
-            </nav>
-        )
-        break;
-      default:
+    switch (this.props.activeSlug) {
+      case 'volunteer':
+      case 'donate':
+      case 'share':
+      case 'food':
+      case 'about':
+      case 'contact':
         return (
           <nav>
             <a href="/" data-frameid="home">
@@ -54,6 +50,17 @@ class Nav extends React.Component {
               </Link>
             </ul>
           </nav>
+        )
+        break;
+      default:
+        return (
+            <nav>
+              <p>
+                9<br/>
+                Million<br/>
+                Reasons<br/>
+              </p>
+            </nav>
         )
         break;
     }

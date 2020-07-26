@@ -93,7 +93,7 @@ export default class Layout extends React.Component {
               this.props.transitionState === TRANSITION_EXITING
             ),
             'content--project-detail': this.props.isProjectDetail,
-            'content--whitetext': this.props.activeFrameId === 'home'
+            'content--whitetext': !this.props.activeSlug
           })}
         >
           <div className="content-container">

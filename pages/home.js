@@ -1,78 +1,76 @@
-import Router from 'next/router';
-import { get } from 'dotty';
-import { debounce } from 'throttle-debounce'
+import Router from 'next/router'
+import BlockContent from '@sanity/block-content-to-react'
+import { get } from 'dotty'
+import classnames from 'classnames'
 
-import Background from '../components/background.js';
-import Nav from '../components/nav.js';
-import "../styles/styles.scss";
-// import { contentQuery } from '../lib/queries';
-import Layout from '../components/layout';
-// import sanity from '../lib/sanity'
+import Background from '../components/background.js'
+import Nav from '../components/nav.js'
+import { contentQuery } from '../lib/queries'
+import Layout from '../components/layout'
+import sanity from '../lib/sanity'
+
+import "../styles/styles.scss"
 
 export default class Home extends React.Component {
+
+  static async getInitialProps({ req }) {
+    const content = await sanity.fetch(contentQuery);
+    const activeSlug = req.url.replace("/", "") || null;
+    return {
+      content,
+      activeSlug
+    }
+  }
+
+  getPageContent = () => {
+    try {
+      return this.props.content.find( item => get(item, 'page_slug.current') == this.props.activeSlug)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render() {
+    const content = get(this.getPageContent(), 'page_content')
     return (
-      <Layout activeFrameId="home">
-        <Background />
+      <Layout activeSlug={ this.props.activeSlug }>
+        {
+          !this.props.activeSlug  && (
+            <Background  {...this.props }/>
+          )
+        }
         <div className="scroll-hider">
-          <Nav
-            activeFrameId="home"
-            onLinkClick={ this.onLinkClick }
-          />
+          <Nav activeSlug={ this.props.activeSlug } />
           <div
             className="content-main"
             id="scrollContainer"
           >
-            <div className="module space-between" data-frameid="home" id="module--home">
-              <div className="row">
-                <div className="col col-2">
-                  We’re NYC’s largest, donation-based community food pantry. We provide free food for anyone in need.
-                </div>
-                <div className="col col-1">
-                </div>
-              </div>
-              <div className="row">
-                <div className="col col-2">
-                  Do you want to help us?
-                </div>
-                <div className="col col-1">
-                  <ul>
-                    <li>
-                      <a href="/volunteer" data-frameid="volunteer" onClick={ this.onLinkClick }>Volunteer</a>
-                    </li>
-                    <li>
-                      <a href="/donate" data-frameid="donate" onClick={ this.onLinkClick }>Donate</a>
-                    </li>
-                    <li>
-                      <a href="/share" data-frameid="share" onClick={ this.onLinkClick }>Share</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col col-2">
-                  Do you need groceries?
-                </div>
-                <div className="col col-1">
-                  <ul>
-                    <li>
-                      <a href="/food" data-frameid="need" onClick={ this.onLinkClick } >Get Food</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col col-2">
-                  Who are we?
-                </div>
-                <div className="col col-1">
-                  <ul>
-                    <li>
-                      <a href="#about" data-frameid="about" onClick={ this.onLinkClick } >About</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div className={ classnames('module', {'space-between': !this.props.activeSlug })}>
+              {
+                content.map( item => {
+                  console.log(item);
+                  if (item._type === 'one_column_row') {
+                    return (
+                      <div className="row">
+                        <div className="col col-1">
+                          <BlockContent blocks={ item.row } />
+                        </div>
+                      </div>
+                    )
+                  } else if (item._type === 'two_column_row') {
+                    return (
+                      <div className="row">
+                        <div className="col col-2">
+                          <BlockContent blocks={ item.row_left } />
+                        </div>
+                        <div className="col col-1">
+                          <BlockContent blocks={ item.row_right } />
+                        </div>
+                      </div>
+                    )
+                  }
+                })
+              }
             </div>
           </div>
         </div>
