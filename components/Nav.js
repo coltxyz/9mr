@@ -1,9 +1,10 @@
-import classnames from 'classnames';
+import classnames from 'classnames'
+// import Link from 'next/link'
 
 
 const Link = props => (
   <li className={ classnames(props.className, { active: props.activeFrameId === props.frameId})}>
-    <a href={`#${ props.frameId }`} data-frameid={props.frameId} onClick={ props.onLinkClick }>
+    <a href={`${ props.frameId }`} data-frameid={props.frameId} >
       { props.children }
     </a>
   </li>
@@ -24,7 +25,7 @@ class Nav extends React.Component {
       default:
         return (
           <nav>
-            <a href="#lol" data-frameid="home" onClick={ this.props.onLinkClick }>
+            <a href="/" data-frameid="home">
               9MR
             </a>
             <br/>
@@ -40,7 +41,7 @@ class Nav extends React.Component {
                 Share
               </Link>
               <li className="blank"/>
-              <Link frameId="need" {...this.props }>
+              <Link frameId="food" {...this.props }>
                 Get Food
               </Link>
               <li className="blank"/>

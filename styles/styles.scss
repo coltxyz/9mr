@@ -83,30 +83,12 @@ li.align-bottom {
   position: relative;
   box-sizing: content-box;
 }
-.content-inner {
-  position: relative;
-}
-.flex-container {
-  display: flex;
-}
-.bg-gray {
-  background: var(--gray);
-}
-.bg-white {
-  background: var(--white);
-}
-.text-center {
-  text-align: center;
-}
-.rel {
-  position: relative;
-}
+
 
 .module {
   width: 75vw;
   min-height: 100%;
   padding: 3rem 0;
-  margin-bottom: 9rem;
   display: flex;
   flex-direction: column;
   &.space-between {

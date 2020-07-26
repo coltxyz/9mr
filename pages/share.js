@@ -9,14 +9,16 @@ import "../styles/styles.scss";
 import Layout from '../components/layout';
 // import sanity from '../lib/sanity'
 
-export default class Home extends React.Component {
+
+export default class Donate extends React.Component {
+
   render() {
     return (
-      <Layout activeFrameId="home">
-        <Background />
+      <Layout { ...this.props }>
+        <Background activeFrameIde="home" />
         <div className="scroll-hider">
           <Nav
-            activeFrameId="home"
+            activeFrameId="share"
             onLinkClick={ this.onLinkClick }
           />
           <div
