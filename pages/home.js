@@ -31,7 +31,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const content = get(this.getPageContent(), 'page_content')
+    const content = get(this.getPageContent(), 'page_content') || []
     return (
       <Layout activeSlug={ this.props.activeSlug }>
         {
@@ -39,12 +39,8 @@ export default class Home extends React.Component {
             <Background  {...this.props }/>
           )
         }
-        <div className="scroll-hider">
           <Nav activeSlug={ this.props.activeSlug } />
-          <div
-            className="content-main"
-            id="scrollContainer"
-          >
+          <div className="content-main">
             <div className={ classnames('module', {'space-between': !this.props.activeSlug })}>
               {
                 content.map( item => {
@@ -71,7 +67,6 @@ export default class Home extends React.Component {
                   }
                 })
               }
-            </div>
           </div>
         </div>
       </Layout>

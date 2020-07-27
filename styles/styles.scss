@@ -56,18 +56,22 @@ input, button, textarea {
       opacity: 0;
     }
   }
-  &.content--whitetext {
+  &.content--homepage {
     color: white;
+    .row a {
+      color: inherit;
+      border: none;
+    }
+    ul {
+      margin: 0;
+    }
   }
 }
 .content-main {
   -webkit-overflow-scrolling: touch;
   pointer-events: all;
-  width: calc(75vw + 50px);
-  height: 100%;
-  padding-bottom: 40px;
-  overflow: auto;
-  overscroll-behavior: contain;
+  width: 75vw;
+  height: 100vh;
   padding-left: 25vw;
   position: relative;
   box-sizing: content-box;
@@ -100,17 +104,12 @@ input, button, textarea {
     }
   }
 }
-.row + .row {
-  margin-top: 3rem;
-}
+// .row + .row {
+//   margin-top: 3rem;
+// }
 
 .scroll-hider {
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+
 }
 
 .margin-copy {

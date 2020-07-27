@@ -18,6 +18,7 @@ class Nav extends React.Component {
       case 'share':
       case 'food':
       case 'about':
+      case 'gallery':
       case 'contact':
         return (
           <nav>
@@ -44,6 +45,9 @@ class Nav extends React.Component {
               <Link frameId="about" {...this.props }>
                 About
               </Link>
+              <Link frameId="gallery" {...this.props }>
+                Gallery
+              </Link>
               <li className="blank"/>
               <Link frameId="contact" {...this.props } className="align-bottom">
                 Contact
@@ -55,7 +59,7 @@ class Nav extends React.Component {
       default:
         return (
             <nav>
-              <p>
+              <p className="color--white">
                 9<br/>
                 Million<br/>
                 Reasons<br/>

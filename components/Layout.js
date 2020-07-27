@@ -73,12 +73,11 @@ export default class Layout extends React.Component {
           <style>
             {`
               :root {
-                --black-ln: ${ themeColor('stroke') };
-                --white: ${ themeColor('background') };
-                --gray: ${ themeColor('backgroundAlt') };
-                --trackbar: ${ themeColor('trackbar') };
-                --white-permanent: ${ themeColor('white') };
-                --black-permanent: ${ themeColor('black') };
+                --stroke: ${ themeColor('black') };
+                --background ${ themeColor('white') };
+                --gray: ${ themeColor('gray') };
+                --black: ${ themeColor('black') };
+                --white: ${ themeColor('white') };
               }
             `}
           </style>
@@ -86,14 +85,7 @@ export default class Layout extends React.Component {
         <div
           id="main"
           className={classname({
-            'content--transition--entering': (
-              this.props.transitionState === TRANSITION_ENTERING
-            ),
-            'content--transition--exiting': (
-              this.props.transitionState === TRANSITION_EXITING
-            ),
-            'content--project-detail': this.props.isProjectDetail,
-            'content--whitetext': !this.props.activeSlug
+            'content--homepage': !this.props.activeSlug
           })}
         >
           <div className="content-container">
