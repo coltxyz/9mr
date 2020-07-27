@@ -44,7 +44,6 @@ export default class Home extends React.Component {
             <div className={ classnames('module', {'space-between': !this.props.activeSlug })}>
               {
                 content.map( item => {
-                  console.log(item);
                   if (item._type === 'one_column_row') {
                     return (
                       <div className="row">
