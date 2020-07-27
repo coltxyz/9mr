@@ -1,13 +1,14 @@
 $ease: cubic-bezier(0.23, 1, 0.32, 1);
 $timing_contenttransition: 400ms;
 $delay_contenttransition: 100ms;
-$mobile_nav_height: 28rem;
+$pad: 1.8rem;
+$mobile_nav_height: 6.2em;
 
 $break_xl: 1500px;
 $break_lg: 1250px;
 $break_med: 950px;
 $break_sm: 700px;
-//
+
 
 html {
   background: var(--white);
@@ -39,6 +40,7 @@ input, button, textarea {
     width: 100%;
     padding-left: 0;
     padding-top: $mobile_nav_height;
+    margin-top: 1em;
   }
 }
 #main.content--homepage {
@@ -55,7 +57,7 @@ input, button, textarea {
   }
   @media(max-width: $break_sm) {
     .content-main {
-      padding: 10em 0 0 0;
+      padding: 3em 0 0 0;
       box-sizing: border-box;
     }
   }
@@ -64,17 +66,20 @@ input, button, textarea {
 .module {
   width: 100%;
   min-height: 100%;
-  padding: 2rem 0;
+  padding: $pad 0;
   display: flex;
   flex-direction: column;
   &.space-between {
     justify-content: space-between;
   }
+  @media(max-width: $break_sm) {
+    padding-bottom: 4em;
+  }
 }
 .row {
   display: flex;
   position: relative;
-  padding: 0 1rem;
+  padding: 0 $pad rem;
   @media (max-width: $break_sm) {
     padding: 0 2rem;
   }
@@ -98,6 +103,23 @@ input, button, textarea {
   left: 3em;
   width: 8em;
   pointer-events: none;
+}
+
+.homepage-special-rows {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2em;
+  @media (max-width: $break_sm) {
+    display: block;
+    .row {
+      display: block;
+    }
+    ul {
+      padding-bottom: 2em;
+    }
+  }
 }
 
 @import './typography';

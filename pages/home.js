@@ -13,15 +13,6 @@ import "../styles/styles.scss"
 
 export default class Home extends React.Component {
 
-  static async getInitialProps({ req }) {
-    const content = await sanity.fetch(contentQuery);
-    const activeSlug = req.url.replace("/", "") || null;
-    return {
-      content,
-      activeSlug
-    }
-  }
-
   getPageContent = () => {
     try {
       return this.props.content.find( item => get(item, 'page_slug.current') == this.props.activeSlug)
@@ -33,39 +24,58 @@ export default class Home extends React.Component {
   render() {
     const content = get(this.getPageContent(), 'page_content') || []
     return (
-      <Layout activeSlug={ this.props.activeSlug }>
-        {
-          !this.props.activeSlug  && (
-            <Background  {...this.props }/>
-          )
-        }
-          <Nav activeSlug={ this.props.activeSlug } />
+      <Layout activeSlug={ null }>
+          <Background />
+          <nav>
+            <p className="color--white">
+              9&nbsp;<br/>
+              Million&nbsp;<br/>
+              Reasons&nbsp;<br/>
+            </p>
+          </nav>
           <div className="content-main">
-            <div className={ classnames('module', {'space-between': !this.props.activeSlug })}>
-              {
-                content.map( item => {
-                  if (item._type === 'one_column_row') {
-                    return (
-                      <div className="row">
-                        <div className="col col-1">
-                          <BlockContent blocks={ item.row } />
-                        </div>
-                      </div>
-                    )
-                  } else if (item._type === 'two_column_row') {
-                    return (
-                      <div className="row">
-                        <div className="col col-2">
-                          <BlockContent blocks={ item.row_left } />
-                        </div>
-                        <div className="col col-1">
-                          <BlockContent blocks={ item.row_right } />
-                        </div>
-                      </div>
-                    )
-                  }
-                })
-              }
+            <div className={ classnames('module') }>
+            <div className="row">
+              <div className="col col-1">
+                <p>
+                  We’re NYC’s largest, donation-based community food pantry. We provide free food for anyone in need.
+                </p>
+              </div>
+            </div>
+            <div className="homepage-special-rows">
+              <div className="row">
+                <div className="col col-2">
+                  <p>Do you want to help us?</p>
+                </div>
+                <div className="col col-1">
+                  <ul>
+                    <li><a href="/volunteer">Volunteer</a></li>
+                    <li><a href="/donate">Donate</a></li>
+                    <li><a href="/share">Share</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col col-2">
+                  <p>Do you need groceries?</p>
+                </div>
+                <div className="col col-1">
+                  <ul>
+                    <li><a href="/food">Get Food</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col col-2">
+                  <p>Who are we?</p>
+                </div>
+                <div className="col col-1">
+                  <ul>
+                    <li><a href="/about">About</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </Layout>

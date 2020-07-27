@@ -1,11 +1,11 @@
 html {
-  font-size: 12px;
+  font-size: 10px;
   color: var(--black-ln);
   @media (max-width: $break_lg) {
-    font-size: 10px;
+    font-size: 8px;
   }
   @media (max-width: $break_med) {
-    font-size: 8px;
+    font-size: 7px;
   }
   @media (max-width: $break_sm) {
     font-size: 5px;
@@ -15,8 +15,9 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 4rem;
 }
-h1, h2, h3, h4, h5, p, a, ul, li {
+h1, h2, h3, h4, p, a, ul, li {
   margin: 0;
   font-size: 4rem;
   font-family: helvetica, sans-serif;
@@ -24,8 +25,11 @@ h1, h2, h3, h4, h5, p, a, ul, li {
   letter-spacing: -0.1rem;
   line-height: 1em;
 }
-h1, h2, h3, h4, h5 {
-  margin: 1em 1.4em
+h1, h2, h3, h4 {
+  margin: 1em 1em;
+}
+h5 {
+  font-size: 1.5rem;
 }
 a {
   color: inherit;
@@ -36,7 +40,7 @@ ul {
   margin-bottom: 1em;
   padding-left: 1em;
   li {
-    text-indent: -0.75rem;
+    text-indent: -1rem;
   }
   li.blank {
     list-style: none;
@@ -44,12 +48,7 @@ ul {
   }
   li.align-bottom {
     position: absolute;
-    bottom: 2rem;
-  }
-  @media (max-width: $break_sm) {
-    li a {
-      line-height: 1.2;
-    }
+    bottom: $pad;
   }
 }
 
@@ -67,15 +66,18 @@ ul {
   color: var(--gray);
   border-bottom: 0.4rem solid var(--gray);
   padding-left: 0.1em;
-  height: 0.9em;
+  height: 1em;
   display: inline-block;
 }
-.row ul {
+.content--pages .row ul {
   list-style: none;
+  li {
+    text-indent: 0;
+  }
   li:before {
     content: '\2013';
-    display: inline;
     font-size: 1em;
-    margin-right: 0.2em;
+    position: absolute;
+    left: 2rem;
   }
 }

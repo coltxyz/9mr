@@ -1,8 +1,8 @@
 nav {
   width: 25rem;
   position: fixed;
-  padding-top: 2rem;
-  padding-left: 2rem;
+  padding-top: $pad;
+  padding-left: $pad;
   height: 100%;
   z-index: 1;
   pointer-events: none;
@@ -12,6 +12,7 @@ nav {
     width: 100%;
     top: 0;
     height: $mobile_nav_height;
+    padding: $pad;
     br {
       display: none;
     }
@@ -24,6 +25,13 @@ nav {
       li.align-bottom {
         position: static;
       }
+    }
+  }
+  .logo {
+    color: var(--black);
+    margin-bottom: 1em;
+    a:active {
+      color: var(--gray);
     }
   }
   a {
