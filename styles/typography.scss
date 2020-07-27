@@ -17,7 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 4rem;
 }
-h1, h2, h3, h4, p, a, ul, li {
+h1, h2, h3, h4, h5, h6, p, a, ul, li {
   margin: 0;
   font-size: 4rem;
   font-family: helvetica, sans-serif;
@@ -28,8 +28,16 @@ h1, h2, h3, h4, p, a, ul, li {
 h1, h2, h3, h4 {
   margin: 1em 1em;
 }
-h5 {
-  font-size: 1.5rem;
+h5 { //full-space
+  margin: 0;
+  padding: 0;
+  height: 1em;
+}
+h6 { //full-space
+  font-size: 0.5em;
+  margin: 0;
+  padding: 0;
+  height: 1em;
 }
 a {
   color: inherit;
