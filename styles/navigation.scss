@@ -6,10 +6,26 @@ nav {
   height: 100%;
   z-index: 1;
   pointer-events: none;
-}
-
-nav {
   color: var(--gray);
+  background: var(--white);
+  @media(max-width: $break_sm) {
+    width: 100%;
+    top: 0;
+    height: $mobile_nav_height;
+    br {
+      display: none;
+    }
+    ul {
+      column-count: 3;
+      margin: 4rem 0;
+      li.blank {
+        display: none;
+      }
+      li.align-bottom {
+        bottom: auto;
+      }
+    }
+  }
   a {
     pointer-events: all;
     border: none;
@@ -17,5 +33,15 @@ nav {
   }
   li.active, li.active a {
     color: var(--stroke);
+  }
+}
+
+#main.content--homepage nav {
+  background: none;
+  white-space: nowrap;
+  @media(max-width: $break_sm) {
+    height: auto;
+    position: absolute;
+    padding: 2rem 2rem 4rem 2rem;
   }
 }

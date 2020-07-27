@@ -1,6 +1,15 @@
 html {
   font-size: 12px;
   color: var(--black-ln);
+  @media (max-width: $break_lg) {
+    font-size: 10px;
+  }
+  @media (max-width: $break_med) {
+    font-size: 8px;
+  }
+  @media (max-width: $break_sm) {
+    font-size: 5px;
+  }
 }
 body {
   margin: 0;
@@ -25,6 +34,7 @@ a {
 ul {
   margin: 0;
   margin-bottom: 1em;
+  padding-left: 1em;
   li {
     text-indent: -0.75rem;
   }
@@ -35,6 +45,11 @@ ul {
   li.align-bottom {
     position: absolute;
     bottom: 2rem;
+  }
+  @media (max-width: $break_sm) {
+    li a {
+      line-height: 1.2;
+    }
   }
 }
 
