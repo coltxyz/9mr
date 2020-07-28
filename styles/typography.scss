@@ -17,7 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 4rem;
 }
-h1, h2, h3, h4, h5, h6, p, a, ul, li {
+h1, h2, h3, h4, h5, h6, p, a, li {
   margin: 0;
   font-size: 4rem;
   font-family: helvetica, sans-serif;
@@ -56,8 +56,10 @@ ul {
       font-size: 0.75em;
       position: relative;
       left: -3rem;
+      bottom: 0.1em;
       display: inline-block;
       width: 0;
+      overflow: visible;
     }
     &.blank {
       height: 1em;

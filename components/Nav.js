@@ -18,34 +18,36 @@ class Nav extends React.Component {
             9MR
           </a>
         </div>
-        <ul>
-          <Link frameId="volunteer" {...this.props }>
-            Volunteer
-          </Link>
-          <Link frameId="donate" {...this.props }>
-            Donate
-          </Link>
-          <Link frameId="share" {...this.props }>
-            Share
-          </Link>
-          <li className="blank"/>
-          <Link frameId="food" {...this.props }>
-            Get Food
-          </Link>
-          <li className="blank"/>
-          <Link frameId="about" {...this.props }>
-            About
-          </Link>
-          <li>
-            <a href={`${ this.props.globals.gallery_url }`} target="_blank">
-              Gallery
-            </a>
-          </li>
-          <li className="blank"/>
-          <Link frameId="contact" {...this.props } className="align-bottom">
-            Contact
-          </Link>
-        </ul>
+        <div className="list-container">
+          <ul>
+            <Link frameId="volunteer" {...this.props }>
+              Volunteer
+            </Link>
+            <Link frameId="donate" {...this.props }>
+              Donate
+            </Link>
+            <Link frameId="share" {...this.props }>
+              Share
+            </Link>
+            <li className="blank"/>
+            <Link frameId="food" {...this.props }>
+              Get Food
+            </Link>
+            <li className="blank"/>
+            <Link frameId="about" {...this.props }>
+              About
+            </Link>
+            <li>
+              <a href={`${ this.props.globals.gallery_url }`} target="_blank">
+                Gallery
+              </a>
+            </li>
+            <li className="blank"/>
+            <Link frameId="contact" {...this.props } className="align-bottom">
+              Contact
+            </Link>
+          </ul>
+        </div>
       </nav>
     )
   }

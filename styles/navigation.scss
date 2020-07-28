@@ -16,9 +16,14 @@ nav {
     br {
       display: none;
     }
-    ul {
+    .list-container {
       column-count: 3;
-      margin: 4rem 0;
+    }
+    ul {
+      padding-top: 2px;
+      li {
+        white-space: nowrap;
+      }
       li.blank {
         display: none;
       }

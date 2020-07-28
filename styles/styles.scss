@@ -2,7 +2,7 @@ $ease: cubic-bezier(0.23, 1, 0.32, 1);
 $timing_contenttransition: 400ms;
 $delay_contenttransition: 100ms;
 $pad: 1.8rem;
-$mobile_nav_height: 6.2em;
+$mobile_nav_height: 6em;
 
 $break_xl: 1500px;
 $break_lg: 1250px;
@@ -71,10 +71,15 @@ input, button, textarea {
   &.space-between {
     justify-content: space-between;
   }
-  @media(max-width: $break_sm) {
+}
+
+/* on mobile, add a spacer to bottom */
+@media (max-width: $break_sm) {
+  #main:not(.content--homepage) .row:last-of-type {
     padding-bottom: 4em;
   }
 }
+
 .row {
   display: flex;
   position: relative;
