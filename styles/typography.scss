@@ -54,8 +54,10 @@ ul {
     &:not(.blank):before {
       content: '\25CF';
       font-size: 0.75em;
-      position: absolute;
+      position: relative;
       left: -3rem;
+      display: inline-block;
+      width: 0;
     }
     &.blank {
       height: 1em;
