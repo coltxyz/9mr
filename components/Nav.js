@@ -36,9 +36,11 @@ class Nav extends React.Component {
           <Link frameId="about" {...this.props }>
             About
           </Link>
-          <Link frameId="gallery" {...this.props }>
-            Gallery
-          </Link>
+          <li>
+            <a href={`${ this.props.globals.gallery_url }`} target="_blank">
+              Gallery
+            </a>
+          </li>
           <li className="blank"/>
           <Link frameId="contact" {...this.props } className="align-bottom">
             Contact

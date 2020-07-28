@@ -11,11 +11,6 @@ import {
   THEME_DARK,
 } from '../lib/util';
 
-const social_img_url = '/favicon-xxxl.png';
-const title = '9 Million Reasons';
-const ga_id = ''
-const url = ''
-
 export default class Layout extends React.Component {
 
   static defaultProps = {
@@ -24,23 +19,33 @@ export default class Layout extends React.Component {
   }
 
   render () {
-    const description = this.props.description;
+    const {
+      page_title: raw_title,
+      page_description: description,
+      page_share_image: social_img_url,
+      page_url: url,
+      gid: ga_id
+    } = this.props.globals;
+    const title = raw_title + (this.props.activePageName ? ` - ${ this.props.activePageName }` : '');
     const themeColor = name => get(COLORS, [this.props.theme, name]);
+
     return (
       <div>
         <Head>
           <script async src={ `https://www.googletagmanager.com/gtag/js?id=${ ga_id }` }></script>
-          <script dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-                function gtag(){
-                  dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-                gtag('config', '${ ga_id }');
-            `
-          }}/>
-
+          {
+            ga_id && (
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                  function gtag(){
+                    dataLayer.push(arguments);
+                  }
+                  gtag('js', new Date());
+                  gtag('config', '${ ga_id }');
+              `
+            }}/>
+          )}
           <link rel="shortcut icon" href="/favicon-32.png" />
           <link rel="icon" type="image/png" href="/favicon-196.png" />
           <link rel="apple-touch-icon" href="/favicon-180.png" />

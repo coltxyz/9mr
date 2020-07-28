@@ -1,10 +1,26 @@
+import React from 'react';
+import { urlFor } from '../lib/util.js';
 
 export default class Background extends React.Component {
 
-  componentDidMount() {
-    const backgroundImages = document.querySelectorAll('.background--img');
+  constructor() {
+    super()
+    this.state = {
+      images: []
+    }
+  }
 
+  componentDidMount() {
+    const images = this.props.images.map( img => urlFor(img) );
+    this.setState({
+      images
+    }, this.runAnimation)
+  }
+
+  runAnimation() {
+    const backgroundImages = document.querySelectorAll('.background--img');
     let imageIndex = backgroundImages.length - 1;
+    console.log(window.innerWidth)
     window.setInterval(() => {
       const image = backgroundImages[imageIndex];
       image.style.opacity = 0
@@ -17,17 +33,25 @@ export default class Background extends React.Component {
         imageIndex--;
       }
     }, 5000)
-
   }
 
-  render = () => (
-    <div className="background">
-      <div className="background--img" style={{ backgroundImage: `url(/bg-2.jpg)` }} />
-      <div className="background--img" style={{ backgroundImage: `url(/bg-6.jpg)` }} />
-      <div className="background--img" style={{ backgroundImage: `url(/bg-5.jpg)` }} />
-      <div className="background--img" style={{ backgroundImage: `url(/bg-3.jpg)` }} />
-      <div className="background--img" style={{ backgroundImage: `url(/bg-4.jpg)` }} />
-      <div className="background--img" style={{ backgroundImage: `url(/bg-1.jpg)` }} />
-    </div>
-  )
+  render = () => {
+    return (
+      <div className="background">
+        {
+          this.state.images.map( img => {
+            return (
+              <div
+                className="background--img"
+                key={ img }
+                style={{
+                  backgroundImage: `url(${ img })`
+                }}
+              />
+            )
+          })
+        }
+      </div>
+    )
+  }
 }

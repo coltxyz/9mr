@@ -4,7 +4,7 @@ import { get } from 'dotty'
 import classnames from 'classnames'
 
 import Nav from '../components/nav.js'
-import { contentQuery } from '../lib/queries'
+import { contentQuery, globalQuery } from '../lib/queries'
 import Layout from '../components/layout'
 import sanity from '../lib/sanity'
 
@@ -14,9 +14,11 @@ export default class Home extends React.Component {
 
   static async getInitialProps({ req }) {
     const content = await sanity.fetch(contentQuery);
+    const globals = await sanity.fetch(globalQuery);
     const activeSlug = req.url.replace("/", "") || null;
     return {
       content,
+      globals,
       activeSlug
     }
   }
@@ -30,10 +32,19 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const globals = get(this.props, 'globals.0' ) || {}
+    const page = this.getPageContent() || {};
     const content = get(this.getPageContent(), 'page_content') || []
     return (
-      <Layout activeSlug={ this.props.activeSlug }>
-        <Nav activeSlug={ this.props.activeSlug } />
+      <Layout
+        activeSlug={ this.props.activeSlug }
+        globals={ globals }
+        activePageName={ page.page_title }
+      >
+        <Nav
+          activeSlug={ this.props.activeSlug }
+          globals={ globals }
+        />
         <div className="content-main">
           <div className={ classnames('module', {'space-between': !this.props.activeSlug })}>
             {

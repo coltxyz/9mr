@@ -47,12 +47,19 @@ ul {
   margin: 0;
   margin-bottom: 1em;
   padding-left: 0.85em;
+  list-style: none;
   li {
-    text-indent: -1rem;
-  }
-  li.blank {
-    list-style: none;
-    height: 1em;
+    text-indent: 0;
+    position: relative;
+    &:not(.blank):before {
+      content: '\25CF';
+      font-size: 0.75em;
+      position: absolute;
+      left: -3rem;
+    }
+    &.blank {
+      height: 1em;
+    }
   }
   li.align-bottom {
     position: absolute;
@@ -73,7 +80,6 @@ ul {
 .row a {
   color: var(--gray);
   border-bottom: 0.4rem solid var(--gray);
-  padding-left: 0.1em;
   height: 1em;
   display: inline-block;
 }
@@ -86,7 +92,5 @@ ul {
   li:before {
     content: '\2013';
     font-size: 1em;
-    position: absolute;
-    left: 3rem;
   }
 }

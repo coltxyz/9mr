@@ -125,6 +125,10 @@ input, button, textarea {
   }
 }
 
+.home-description {
+  max-width: 20em;
+}
+
 @import './typography';
 @import './navigation';
 @import './background';
