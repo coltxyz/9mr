@@ -47,6 +47,9 @@ input, button, textarea {
   .row a {
     color: inherit;
     border: none;
+    &:after {
+      display: none;
+    }
   }
   ul {
     margin: 0;
