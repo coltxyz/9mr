@@ -83,9 +83,10 @@ ul {
 
 .row a {
   color: var(--gray);
-  border-bottom: 0.4rem solid var(--gray);
-  height: 1em;
+  border-bottom: 0.5rem solid var(--gray);
+  height: 0.95em;
   display: inline-block;
+  margin-bottom: 0.05em;
 }
 .content--pages .row ul {
   list-style: none;

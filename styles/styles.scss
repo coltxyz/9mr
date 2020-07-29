@@ -2,7 +2,7 @@ $ease: cubic-bezier(0.23, 1, 0.32, 1);
 $timing_contenttransition: 400ms;
 $delay_contenttransition: 100ms;
 $pad: 1.8rem;
-$mobile_nav_height: 6em;
+$mobile_nav_height: 6.1em;
 
 $break_xl: 1500px;
 $break_lg: 1250px;
@@ -56,7 +56,7 @@ input, button, textarea {
   }
   @media(max-width: $break_sm) {
     .content-main {
-      padding: 3em 0 0 0;
+      padding: 2em 0 0 0;
       box-sizing: border-box;
     }
   }
