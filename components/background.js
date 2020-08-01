@@ -20,7 +20,6 @@ export default class Background extends React.Component {
   runAnimation() {
     const backgroundImages = document.querySelectorAll('.background--img');
     let imageIndex = backgroundImages.length - 1;
-    console.log(window.innerWidth)
     window.setInterval(() => {
       const image = backgroundImages[imageIndex];
       image.style.opacity = 0

@@ -32,7 +32,6 @@ export default class Home extends React.Component {
 
   render() {
     const globals = get(this.props, 'globals.0' ) || {}
-    console.log(globals)
     return (
       <Layout
         activeSlug={ null }
