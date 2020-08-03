@@ -1,8 +1,7 @@
 {
-  "name": "fey-2019",
+  "name": "9mr",
   "version": "1.0.0",
-  "author": "",
-  "description": "Fey 2019 Festival Website",
+  "author": "colton@coltonbrown.com",
   "private": true,
   "main": "index.js",
   "dependencies": {
