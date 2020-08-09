@@ -51,7 +51,7 @@ export default class Home extends React.Component {
               content.map( item => {
                 if (item._type === 'one_column_row') {
                   return (
-                    <div className="row">
+                    <div className="row" key={ item._key }>
                       <div className="col col-1">
                         <BlockContent blocks={ item.row } />
                       </div>
@@ -59,7 +59,7 @@ export default class Home extends React.Component {
                   )
                 } else if (item._type === 'two_column_row') {
                   return (
-                    <div className="row">
+                    <div className="row" key={ item._key }>
                       <div className="col col-2">
                         <BlockContent blocks={ item.row_left } />
                       </div>
