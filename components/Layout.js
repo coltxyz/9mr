@@ -69,8 +69,6 @@ export default class Layout extends React.Component {
           <meta property="og:site_name" content={ title } />
           <meta property="og:url" content={ url } />
 
-          <meta name="robots" content="noindex" />
-
           <title>{ title }</title>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
