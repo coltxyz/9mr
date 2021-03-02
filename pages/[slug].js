@@ -31,6 +31,19 @@ export default class Home extends React.Component {
     }
   }
 
+  componentDidMount() {
+    try {
+      const links = document.getElementById('block-content').getElementsByTagName('a')
+      if(links.length) {
+        for (let i = 0; i < links.length; i++) {
+          links[i].setAttribute('target', "_blank")
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render() {
     const globals = get(this.props, 'globals.0' ) || {}
     const page = this.getPageContent() || {};
@@ -45,7 +58,7 @@ export default class Home extends React.Component {
           activeSlug={ this.props.activeSlug }
           globals={ globals }
         />
-        <div className="content-main">
+        <div className="content-main" id="block-content">
           <div className={ classnames('module', {'space-between': !this.props.activeSlug })}>
             {
               content.map( item => {
