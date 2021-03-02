@@ -31,7 +31,14 @@ export default {
     {
       name: 'gid',
       title: 'Google Analytics Key',
-      description: 'Add the google analytics ID here to track user behavior. Note: not activated if blank',
+      description: 'Add the google analytics ID here to track user behavior. Not activated if blank',
+      type: 'string',
+      fieldset: 'metadata'
+    },
+    {
+      name: 'gtmcid',
+      title: 'GTM Container ID',
+      description: 'Add the google tag manager container ID here to track additional user behavior. Not activated if blank',
       type: 'string',
       fieldset: 'metadata'
     },

@@ -24,7 +24,8 @@ export default class Layout extends React.Component {
       page_description: description,
       page_share_image: social_img_url,
       page_url: url,
-      gid: ga_id
+      gid: ga_id,
+      gtmcid: gtmcid
     } = this.props.globals;
     const title = raw_title + (this.props.activePageName ? ` - ${ this.props.activePageName }` : '');
     const themeColor = name => get(COLORS, [this.props.theme, name]);
@@ -43,6 +44,18 @@ export default class Layout extends React.Component {
                   }
                   gtag('js', new Date());
                   gtag('config', '${ ga_id }');
+              `
+            }}/>
+          )}
+          {
+            gtmcid && (
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${ gtmcid }');
               `
             }}/>
           )}
