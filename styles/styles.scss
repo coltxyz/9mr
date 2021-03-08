@@ -122,7 +122,7 @@ input, button, textarea {
   justify-content: space-between;
   margin-top: 2em;
   ul {
-    position: absolute;
+    // position: absolute;
   }
   @media (max-width: $break_sm) {
     display: block;

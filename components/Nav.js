@@ -34,18 +34,23 @@ class Nav extends React.Component {
               Get Food
             </Link>
             <li className="blank"/>
-            <Link frameId="about" {...this.props }>
-              About
-            </Link>
             <li>
               <a href={`${ this.props.globals.gallery_url }`} target="_blank">
                 Gallery
               </a>
             </li>
             <li className="blank"/>
-            <Link frameId="contact" {...this.props } className="align-bottom">
-              Contact
-            </Link>
+            <div className="align-bottom">
+              <Link frameId="about" {...this.props }>
+                About
+              </Link>
+              <Link frameId="press" {...this.props } >
+                Press
+              </Link>
+              <Link frameId="contact" {...this.props }>
+                Contact
+              </Link>
+            </div>
           </ul>
         </div>
       </nav>

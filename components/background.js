@@ -3,7 +3,7 @@ import { urlFor } from '../lib/util.js';
 
 export default class Background extends React.Component {
 
-  constructor() {
+  constructor({ images }) {
     super()
     this.state = {
       images: []

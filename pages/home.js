@@ -84,6 +84,8 @@ export default class Home extends React.Component {
                   <div className="col col-1">
                     <ul>
                       <li><a href="/about">About</a></li>
+                      <li><a href="/press">Press</a></li>
+                      <li><a href="/contact">Contact</a></li>
                     </ul>
                   </div>
                 </div>
